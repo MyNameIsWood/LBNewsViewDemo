@@ -27,6 +27,8 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         
+        self.myTabs = [NSMutableArray array];
+        
         // 初始化赋值
         self.separatorEnabled = YES;
         self.separatorWidth = 1;
@@ -145,19 +147,45 @@
     [titles enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         UIButton* tab = [UIButton buttonWithType:UIButtonTypeCustom];
         [tab setTitleColor:self.titleColor forState:UIControlStateNormal];
+        [tab setTitleColor:self.selectedTitleColor forState:UIControlStateSelected];
         tab.backgroundColor = [UIColor clearColor];
         tab.tag = idx;
         [tab setTitle:obj forState:UIControlStateNormal];
         tab.titleLabel.font = self.titleFont;
         [tab addTarget:self action:@selector(tabTouched:) forControlEvents:UIControlEventTouchUpInside];
         tab.frame = CGRectMake(idx*self.tabWidth, 0, self.tabWidth, self.myScrollView.height);
+        if (idx == 0) {
+            tab.selected = YES;
+        }
         [self.myScrollView addSubview:tab];
         [self.myTabs addObject:tab];
     }];
     
 }
 
+//
+- (void)setTheSelectedIndex:(NSInteger)theSelectedIndex {
+    
+    _theSelectedIndex = theSelectedIndex;
+    
+    UIButton* theSelectedTab = self.myTabs[theSelectedIndex];
+    theSelectedTab.selected = YES;
+    
+    for (UIButton* tab in self.myTabs) {
+        if (![tab isEqual:theSelectedTab]) {
+            tab.selected = NO;
+        }
+    }
+}
+
 - (void)tabTouched:(UIButton*)sender {
+    
+    sender.selected = YES;
+    for (UIButton* tab in self.myTabs) {
+        if (![tab isEqual:sender]) {
+            tab.selected = NO;
+        }
+    }
     
     // 动画
     [UIView animateWithDuration:self.duration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -179,6 +207,10 @@
 /** 移动选中背景至theX */
 - (void)moveSelectedBackgroundViewTo:(CGFloat)theX {
 
+    for (UIButton* tab in self.myTabs) {
+        tab.selected = NO;
+    }
+    
     self.selectedBackView.x = theX;
     [self.myScrollView scrollRectToVisible:CGRectMake(theX, 0, self.tabWidth, MYHEIGHT) animated:ANIMATED];
     

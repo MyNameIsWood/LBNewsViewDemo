@@ -29,9 +29,12 @@
 //    scrollTabbar.separatorWidth = 1;
 //    scrollTabbar.titles = @[@"新闻",@"体育",@"娱乐",@"社会",@"八卦",@"世界杯",@"历史"];
     LBNewsView* newsView = [[LBNewsView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height-64)];
+    
+    newsView.selectedTitleColor = [UIColor redColor];
     newsView.titles = @[@"新闻",@"体育",@"娱乐",@"社会",@"八卦",@"世界杯",@"历史"];
     newsView.dataSource = self;
     newsView.delegate = self;
+    
     [self.view addSubview:newsView];
     
 }

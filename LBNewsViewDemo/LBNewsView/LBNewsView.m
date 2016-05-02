@@ -93,6 +93,11 @@
     self.myScrollTabbar.titleColor = titleColor;
 }
 
+- (void)setSelectedTitleColor:(UIColor *)selectedTitleColor {
+    _selectedTitleColor = selectedTitleColor;
+    self.myScrollTabbar.selectedTitleColor = selectedTitleColor;
+}
+
 - (void)setTitleFont:(UIFont *)titleFont {
     _titleFont = titleFont;
     self.myScrollTabbar.titleFont = titleFont;
@@ -166,6 +171,10 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     
     if ([scrollView isEqual:self.myContentView]) {// 通知代理
+        
+        NSInteger index = scrollView.contentOffset.x/scrollView.bounds.size.width;
+        
+        self.myScrollTabbar.theSelectedIndex = index;
         
         if (self.delegate) {
             

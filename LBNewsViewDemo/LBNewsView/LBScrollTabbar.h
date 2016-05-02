@@ -38,6 +38,8 @@
 @property (assign, nonatomic) CGFloat tabWidth;
 /** 设置文字颜色（默认是blackColor） */
 @property (strong, nonatomic) UIColor* titleColor;
+/** 设置选中文字颜色（默认是无）*/
+@property (strong, nonatomic) UIColor* selectedTitleColor;
 /** 设置文字字体（默认是[UIFont systemFontOfSize:13]） */
 @property (strong, nonatomic) UIFont* titleFont;
 /** 设置背景颜色（默认是whiteColor） */
@@ -52,6 +54,10 @@
 @property (strong, nonatomic) NSArray<NSString*>* titles;
 /** 代理 */
 @property (weak  , nonatomic) id<LBScrollTabbarDelegate> delegate;
+
+
+/** 选中的参数 */
+@property (assign, nonatomic) NSInteger theSelectedIndex;
 
 /** 移动选中背景至theX */
 - (void)moveSelectedBackgroundViewTo:(CGFloat)theX;
