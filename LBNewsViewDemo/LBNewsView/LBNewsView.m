@@ -88,10 +88,10 @@
     self.myScrollTabbar.tabWidth = tabWidth;
 }
 
-- (void)setTitleColor:(UIColor *)titleColor {
-    _titleColor = titleColor;
-    self.myScrollTabbar.titleColor = titleColor;
-}
+//- (void)setTitleColor:(UIColor *)titleColor {
+//    _titleColor = titleColor;
+//    self.myScrollTabbar.titleColor = titleColor;
+//}
 
 - (void)setSelectedTitleColor:(UIColor *)selectedTitleColor {
     _selectedTitleColor = selectedTitleColor;

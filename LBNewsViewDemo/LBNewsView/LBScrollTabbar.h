@@ -34,16 +34,20 @@
 
 /** 设置选中Tab的背景颜色（默认是半透明灰色） */
 @property (strong, nonatomic) UIColor* selectedTabBackgroundColor;
-/** 设置Tab按钮宽度（默认是0.2倍的自己宽度） */
+/** 设置Tab按钮宽度（默认是自适应宽度） */
 @property (assign, nonatomic) CGFloat tabWidth;
 /** 设置文字颜色（默认是blackColor） */
-@property (strong, nonatomic) UIColor* titleColor;
+@property (strong, nonatomic) UIColor* normalTitleColor;
 /** 设置选中文字颜色（默认是无）*/
 @property (strong, nonatomic) UIColor* selectedTitleColor;
 /** 设置文字字体（默认是[UIFont systemFontOfSize:13]） */
 @property (strong, nonatomic) UIFont* titleFont;
 /** 设置背景颜色（默认是whiteColor） */
 @property (strong, nonatomic) UIColor* myBackgroundColor;
+/** 设置tab背景图片（默认是nil） */
+@property (strong, nonatomic) UIImage* normalBackgroundImage;
+/** 设置tab选中状态背景图片（默认是nil） */
+@property (strong, nonatomic) UIImage* selectedBackgroundImage;
 
 #pragma mark - 动画
 /** 设置selectedBackView移动动画时间（默认是0.2） */
@@ -54,7 +58,6 @@
 @property (strong, nonatomic) NSArray<NSString*>* titles;
 /** 代理 */
 @property (weak  , nonatomic) id<LBScrollTabbarDelegate> delegate;
-
 
 /** 选中的参数 */
 @property (assign, nonatomic) NSInteger theSelectedIndex;

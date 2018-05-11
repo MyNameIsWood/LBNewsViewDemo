@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "LBNewsView.h"
+#import "LBScrollTabbar.h"
 #import "UIView+Extension.h"
 
 // RGB颜色
@@ -18,6 +19,8 @@
 
 @interface ViewController ()<LBNewsViewDataSource,LBNewsViewDelegate>
 
+@property (weak, nonatomic) LBScrollTabbar* scrollTabbar;
+
 @end
 
 @implementation ViewController
@@ -25,19 +28,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    LBScrollTabbar* scrollTabbar = [[LBScrollTabbar alloc]initWithFrame:CGRectMake(0, 64, self.view.width, 40)];
-//    scrollTabbar.separatorWidth = 1;
-//    scrollTabbar.titles = @[@"新闻",@"体育",@"娱乐",@"社会",@"八卦",@"世界杯",@"历史"];
-    LBNewsView* newsView = [[LBNewsView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.view.height-64)];
+    LBScrollTabbar* scrollTabbar = [[LBScrollTabbar alloc]initWithFrame:CGRectMake(0, 64, self.view.width, 40)];
+    scrollTabbar.separatorWidth = 1;
+    scrollTabbar.titles = @[@"新闻",@"体育乐乐乐乐",@"娱乐",@"社会",@"八卦",@"世界杯",@"历史"];
+//    scrollTabbar.underlineColor = [UIColor redColor];
     
-    newsView.selectedTitleColor = [UIColor redColor];
-    newsView.titles = @[@"新闻",@"体育",@"娱乐",@"社会",@"八卦",@"世界杯",@"历史"];
-    newsView.dataSource = self;
-    newsView.delegate = self;
-    
-    [self.view addSubview:newsView];
+    [self.view addSubview:scrollTabbar];
+    _scrollTabbar = scrollTabbar;
     
 }
+
+- (IBAction)changeAction:(UIButton *)sender {
+    
+    _scrollTabbar.tabWidth = 80;
+    
+}
+
+
 
 - (UIView*)newsView:(LBNewsView*)theNewsView viewForIndex:(NSInteger)theIndex {
     UIView* view = [[UIView alloc] init];
